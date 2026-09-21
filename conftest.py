@@ -8,14 +8,17 @@ from datetime import datetime
 @pytest.fixture()
 def get_driver():
     driver = None
+
     try:
         options = webdriver.ChromeOptions()
         options.add_argument("--headless=new")
-        options.add_argument("--window-size=1920,1080")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--window-size=1920,1080")
 
         driver = webdriver.Chrome(options=options)
+
         yield driver
 
     except Exception as e:
@@ -25,6 +28,7 @@ def get_driver():
     finally:
         if driver:
             driver.quit()
+
 
 @pytest.fixture()
 def test_logger(request):
@@ -43,14 +47,17 @@ def test_logger(request):
             format="%(asctime)s - %(levelname)s - %(message)s",
             force=True
         )
+
     except Exception as e:
-        logging.error(f'Failed to set up logger: {e}')
+        logging.error(f"Failed to set up logger: {e}")
         raise
 
-    # used by helpers.py to save a screenshot under logs_<date>/screenshots/<test_name>.png on failure
     logging.test_name = test_name
     logging.screenshot_dir = f"{logs_dir}/screenshots"
 
     logging.info(f"{test_name} is started")
+
     yield logging
+
     logging.info(f"{test_name} is finished")
+```
