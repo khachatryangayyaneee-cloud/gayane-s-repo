@@ -7,25 +7,19 @@ from datetime import datetime
 
 @pytest.fixture()
 def get_driver():
-    driver = None
-    try:
-        options = webdriver.ChromeOptions()
-        options.add_argument("--headless=new")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--disable-gpu")
-        options.add_argument("--window-size=1920,1080")
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=1920,1080")
 
-        driver = webdriver.Chrome(options=options)
-        yield driver
+    driver = webdriver.Chrome(options=options)
 
-    except Exception as e:
-        logging.error(f"Failed to set up driver: {e}")
-        raise
+    yield driver
 
-    finally:
-        if driver:
-            driver.quit()
+    driver.quit()
+
 
 @pytest.fixture()
 def test_logger(request):
@@ -57,4 +51,3 @@ def test_logger(request):
     yield logging
 
     logging.info(f"{test_name} is finished")
-```
