@@ -1,0 +1,13 @@
+Hello Gayane, share this practice page and share your knowledge
+Hello Gayane, share this practice page and share your knowledge
+Hello Gayane, share this practice page and share your knowledge
+Hello Gayane, share this practice page and share your knowledge
+
+Alert text - Hello , share this practice page and share your knowledge
+Hidden attribute - display: none;
+Footer text - © 2026 letskodeit
+Sign in validation message - Incorrect login details
+Alert text - Hello , share this practice page and share your knowledge
+Hidden attribute - display: none;
+Footer text - © 2026 letskodeit
+Sign in validation message - Incorrect login details
