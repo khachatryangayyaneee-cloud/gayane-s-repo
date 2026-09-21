@@ -7,20 +7,21 @@ from datetime import datetime
 
 @pytest.fixture()
 def get_driver():
+    driver = None
     try:
-        # Run Chrome in headless mode
-        # options = webdriver.ChromeOptions()
-        # options.add_argument('--headless=new')
-        # options.add_argument('--window-size=1920,1080')
-        # driver = webdriver.Chrome(options=options)
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless=new")
+        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
 
-        # Open a visible browser window and maximize it
-        driver = webdriver.Chrome()
-        driver.maximize_window()
+        driver = webdriver.Chrome(options=options)
         yield driver
+
     except Exception as e:
-        logging.error(f'Failed to set up driver: {e}')
+        logging.error(f"Failed to set up driver: {e}")
         raise
+
     finally:
         if driver:
             driver.quit()
