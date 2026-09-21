@@ -8,7 +8,6 @@ from datetime import datetime
 @pytest.fixture()
 def get_driver():
     driver = None
-
     try:
         options = webdriver.ChromeOptions()
         options.add_argument("--headless=new")
@@ -18,7 +17,6 @@ def get_driver():
         options.add_argument("--window-size=1920,1080")
 
         driver = webdriver.Chrome(options=options)
-
         yield driver
 
     except Exception as e:
@@ -28,7 +26,6 @@ def get_driver():
     finally:
         if driver:
             driver.quit()
-
 
 @pytest.fixture()
 def test_logger(request):
